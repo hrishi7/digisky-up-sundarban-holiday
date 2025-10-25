@@ -1,103 +1,256 @@
-import Image from "next/image";
+import { Metadata } from 'next';
+import { Box, Container, Typography, Button, Card, CardMedia, CardContent } from '@mui/material';
+import { pageSEO } from '@/config/seo.config';
+import { heroSection, featureCards } from '@/data/homepage';
+
+export const metadata: Metadata = {
+  title: pageSEO.home.title,
+  description: pageSEO.home.description,
+};
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <Box sx={{ flexGrow: 1, position: 'relative', overflow: 'hidden' }}>
+      {/* Hero Section with Video Background */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          height: { xs: '600px', sm: '700px', md: '800px' },
+          overflow: 'hidden',
+        }}
+      >
+        {/* Video Background */}
+        <Box
+          component="video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        >
+          <source src={heroSection.videoUrl} type="video/mp4" />
+        </Box>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Dark Overlay */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            zIndex: 1,
+          }}
+        />
+
+        {/* Hero Content */}
+        <Container
+          maxWidth="lg"
+          sx={{
+            position: 'relative',
+            zIndex: 2,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center',
+            px: { xs: 2, sm: 3 },
+          }}
+        >
+          {/* Company Name */}
+          <Typography
+            variant="overline"
+            sx={{
+              color: '#FFB800',
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              fontWeight: 600,
+              letterSpacing: '0.15em',
+              mb: 2,
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {heroSection.companyName}
+          </Typography>
+
+          {/* Headline */}
+          <Typography
+            variant="h1"
+            component="h1"
+            sx={{
+              color: '#FFFFFF',
+              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem', lg: '5rem' },
+              fontWeight: 700,
+              lineHeight: 1.2,
+              mb: 3,
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+            }}
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            {heroSection.headline}
+          </Typography>
+
+          {/* Description */}
+          <Typography
+            variant="body1"
+            sx={{
+              color: '#FFFFFF',
+              fontSize: { xs: '0.95rem', sm: '1.1rem', md: '1.15rem' },
+              lineHeight: 1.7,
+              maxWidth: '900px',
+              mb: 4,
+              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+            }}
+          >
+            {heroSection.description}
+          </Typography>
+
+          {/* CTA Button */}
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: '#0A5F4E',
+              color: '#FFFFFF',
+              fontSize: { xs: '1rem', sm: '1.1rem' },
+              fontWeight: 600,
+              px: { xs: 4, sm: 5 },
+              py: { xs: 1.5, sm: 1.8 },
+              borderRadius: '8px',
+              textTransform: 'none',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+              '&:hover': {
+                backgroundColor: '#084538',
+                boxShadow: '0 6px 16px rgba(0, 0, 0, 0.4)',
+              },
+            }}
+          >
+            {heroSection.ctaText}
+          </Button>
+        </Container>
+      </Box>
+
+      {/* Feature Cards Section - Overlapping */}
+      <Box
+        sx={{
+          position: 'relative',
+          mt: { xs: '-120px', sm: '-140px', md: '-160px' },
+          zIndex: 3,
+          pb: 8,
+        }}
+      >
+        <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 3, md: 4 } }}>
+          <Box
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(2, 1fr)',
+                lg: 'repeat(4, 1fr)',
+              },
+              gap: { xs: 3, sm: 4, md: 4 },
+            }}
+          >
+            {featureCards.map((card) => (
+              <Card
+                key={card.id}
+                sx={{
+                  backgroundColor: '#0A5F4E',
+                  color: '#FFFFFF',
+                  borderRadius: '16px 0 16px 0',
+                  overflow: 'visible',
+                  position: 'relative',
+                  height: '100%',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: '0 12px 32px rgba(0, 0, 0, 0.4)',
+                  },
+                }}
+              >
+                {/* Card Image */}
+                <Box sx={{ position: 'relative' }}>
+                  <CardMedia
+                    component="img"
+                    image={card.image}
+                    alt={card.title}
+                    sx={{
+                      height: { xs: 180, sm: 200 },
+                      objectFit: 'cover',
+                      borderRadius: '16px 0 0 0',
+                    }}
+                  />
+                  
+                </Box>
+
+                <CardContent
+                  sx={{
+                    p: 3,
+                    position: 'relative',
+                    '&:last-child': { pb: 3 },
+                  }}
+                >
+                  {/* Decorative Leaf Icon */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: '-35px',
+                      left: '20px',
+                      width: '50px',
+                      height: '50px',
+                      backgroundColor: '#0A5F4E',
+                      borderRadius: '50%',
+                      border: '3px solid #FFB800',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '1.5rem',
+                    }}
+                  >
+                    🌿
+                  </Box>
+
+                  {/* Card Title */}
+                  <Typography
+                    variant="h6"
+                    component="h3"
+                    sx={{
+                      fontSize: '1.25rem',
+                      fontWeight: 600,
+                      mb: 1.5,
+                      mt: 2,
+                    }}
+                  >
+                    {card.title}
+                  </Typography>
+
+                  {/* Card Description */}
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: '0.95rem',
+                      lineHeight: 1.6,
+                      color: 'rgba(255, 255, 255, 0.9)',
+                    }}
+                  >
+                    {card.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </Container>
+      </Box>
+    </Box>
   );
 }
