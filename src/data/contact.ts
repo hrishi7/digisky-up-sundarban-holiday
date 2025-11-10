@@ -13,7 +13,7 @@ export interface ContactPageContent {
       current: string;
     };
   };
-  paymentQrCode: string;
+  // paymentQrCode: string;
   contactDetails: {
     sectionLabel: string;
     title: string;
@@ -30,8 +30,8 @@ export interface ContactPageContent {
       numberOfPerson: string;
       date: string;
       package: string;
-      advancedAmount: number;
-      paymentScreenshot: string;
+      // advancedAmount: number;
+      // paymentScreenshot: string;
 
     };
     packageOptions: Array<{ value: string; label: string }>;
