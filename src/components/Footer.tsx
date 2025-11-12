@@ -19,6 +19,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Link from 'next/link';
+import Image from 'next/image';
 import { footerSections, socialMediaLinks, footerInfo } from '@/data/footer';
 
 const Footer: React.FC = () => {
@@ -44,7 +45,7 @@ const Footer: React.FC = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: '#02352D',
+        backgroundColor: 'primary.main',
         color: 'white',
         pt: 6,
         pb: 3,
@@ -66,9 +67,18 @@ const Footer: React.FC = () => {
         >
           {/* Social Media */}
           <Box>
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
+            <Box sx={{ mb: 2 }}>
+              <Image
+                src="/logo-preview.png"
+                alt="DigiskyUp Logo"
+                width={150}
+                height={50}
+                style={{ objectFit: 'contain' }}
+              />
+            </Box>
+            {/* <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', ml: 4 }}>
               Follow Us
-            </Typography>
+            </Typography> */}
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
               {socialMediaLinks.map((social) => (
                 <IconButton

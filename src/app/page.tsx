@@ -3,6 +3,7 @@ import { Box, Container, Typography, Button, Card, CardMedia, CardContent } from
 import { pageSEO } from '@/config/seo.config';
 import { heroSection, featureCards, whyChooseUs, reviewSection } from '@/data/homepage';
 import ReviewSection from '@/components/ReviewSection';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: pageSEO.home.title,
@@ -115,6 +116,7 @@ export default function Home() {
           </Typography>
 
           {/* CTA Button */}
+          <Link href="/tour-packages">
           <Button
             variant="contained"
             size="large"
@@ -125,6 +127,7 @@ export default function Home() {
               fontWeight: 600,
               px: { xs: 4, sm: 5 },
               py: { xs: 1.5, sm: 1.8 },
+              mb: 2,
               borderRadius: '8px',
               textTransform: 'none',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
@@ -135,7 +138,7 @@ export default function Home() {
             }}
           >
             {heroSection.ctaText}
-          </Button>
+          </Button></Link>
         </Container>
       </Box>
 

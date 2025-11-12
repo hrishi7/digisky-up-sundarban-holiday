@@ -63,14 +63,14 @@ export const aboutPageContent: AboutPageContent = {
   ],
   content: {
     sectionLabel: 'ABOUT US',
-    title: 'Sundarban Holiday Trip',
-    titleHighlight: 'Sundarban Holiday Trip',
+    title: 'MaaLaxmi Homestay',
+    titleHighlight: 'MaaLaxmi Homestay',
     paragraphs: [
       'is a leading tour operator based in Kolkata, specializing in providing the best',
       '. With years of experience and expertise in the field, we have established ourselves as a reliable and reputable name in the tourism industry. Our team comprises passionate travelers, nature enthusiasts, and expert professionals who are dedicated to creating unforgettable experiences for our clients.',
       'We understand that visiting Sundarbans is not just about ticking off another destination on your travel list, but it\'s an opportunity to immerse yourself in the beauty and diversity of this unique ecosystem. This is why we strive to provide our clients with personalized and tailor-made tour packages that cater to their individual interests and preferences.',
     ],
-    highlightText: 'Sundarban Holiday Trip',
+    highlightText: 'MaaLaxmi Homestay',
     highlightBold: 'Sundarban tour packages',
   },
   footer: {

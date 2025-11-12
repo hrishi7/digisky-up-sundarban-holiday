@@ -3,6 +3,7 @@
 import { Box, Container, Typography, Button } from '@mui/material';
 import { Home } from 'lucide-react';
 import { tourPackagesPageContent, TourPackage, PackageFeature } from '@/data/tourPackages';
+import Link from 'next/link';
 
 export default function TourPackagesPage() {
   return (
@@ -163,12 +164,12 @@ export default function TourPackagesPage() {
                       width: '100%',
                       height: '200px',
                       backgroundImage: `url(${pkg.image})`,
-                      // backgroundSize: 'contain',
-                      // backgroundPosition: 'center',
-                      // backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
                       borderTopLeftRadius: '24px',
-                      overflow: 'hidden',
-                      objectFit: 'contain',
+                      // overflow: 'hidden',
+                      // objectFit: 'contain',
                       margin: 0,
                       padding: 0,
                     }}
@@ -183,6 +184,7 @@ export default function TourPackagesPage() {
                     sx={{
                       backgroundColor: '#2C2C2C',
                       padding: '24px',
+                      borderBottomRightRadius: '16px',
                     }}
                   >
                     <Typography
@@ -207,23 +209,25 @@ export default function TourPackagesPage() {
                       {pkg.description}
                     </Typography>
 
-                    <Button
-                      fullWidth
-                      sx={{
-                        backgroundColor: '#666',
-                        color: 'white',
-                        padding: '12px',
-                        fontSize: '1rem',
-                        fontWeight: 600,
-                        borderRadius: '8px',
-                        textTransform: 'none',
-                        '&:hover': {
-                          backgroundColor: '#555',
-                        },
-                      }}
-                    >
-                      Package Details
-                    </Button>
+                    <Link href={`/tour-packages/${pkg.id}`} style={{ textDecoration: 'none' }}>
+                      <Button
+                        fullWidth
+                        sx={{
+                          backgroundColor: '#666',
+                          color: 'white',
+                          padding: '12px',
+                          fontSize: '1rem',
+                          fontWeight: 600,
+                          borderRadius: '8px',
+                          textTransform: 'none',
+                          '&:hover': {
+                            backgroundColor: '#555',
+                          },
+                        }}
+                      >
+                        Package Details
+                      </Button>
+                    </Link>
                   </Box>
                 </Box>
               </Box>

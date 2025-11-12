@@ -3,7 +3,7 @@ export const heroSection = {
   headline: 'Experience Nature Like Never Before',
   description:
     "Nestled in the heart of one of the world's most breathtaking UNESCO World Heritage Sites, our exclusive tour packages offer a unique opportunity to explore the lush mangroves, diverse wildlife, and vibrant culture of the Sundarbans.",
-  ctaText: 'Get Quote Now',
+  ctaText: 'Explore Sundarbans with Maa Laxmi Homestay',
   videoUrl: '/footage-homepage.mp4',
 };
 

@@ -22,6 +22,7 @@ export interface ContactPageContent {
     officeAddress: string;
     contactBoxes: ContactBox[];
   };
+  paymentQrCode: string;
   form: {
     title: string;
     fields: {
@@ -30,8 +31,8 @@ export interface ContactPageContent {
       numberOfPerson: string;
       date: string;
       package: string;
-      // advancedAmount: number;
-      // paymentScreenshot: string;
+      advancedAmount: string;
+      paymentScreenshot: string;
 
     };
     packageOptions: Array<{ value: string; label: string }>;
@@ -53,36 +54,39 @@ export const contactPageContent: ContactPageContent = {
     description:
       'For inquiries or to book your unforgettable Sundarbans adventure, please reach out to us using the following contact information:',
     officeLabel: 'Office',
-    officeAddress: 'Gosaba, South 24 Parganas, West Bengal-743370',
+    officeAddress: 'Jharkhali , Sardar More, Sundarban , Jharkhali park road , 743312 , Basanti, India, 743312',
     contactBoxes: [
       {
         id: 'phone1',
         type: 'phone',
-        label: 'Call Now 24 x 7',
-        value: '+919733203213',
+        label: 'Contact No 1 | Call Now 24 x 7',
+        value: '+919564546823',
       },
       {
         id: 'phone2',
         type: 'phone',
-        label: 'Call Now 24 x 7',
-        value: '+916295927154',
+        label: 'Contact No 2 | Call Now 24 x 7',
+        value: '+919064483605',
       },
       {
         id: 'email',
         type: 'email',
         label: 'Email Us',
-        value: 'info@sundarbanholidaytrip.com',
+        value: 'info@digiskyup.com',
       },
     ],
   },
+  paymentQrCode: "https://ik.imagekit.io/digiskyup/payment_1762973671573_WhatsApp_Image_2025-11-10_at_20.16.35_I0Bj89fps.jpeg",
   form: {
-    title: 'Get Quote',
+    title: 'Book Your Package',
     fields: {
       name: 'Name',
       phone: 'Phone Number',
       package: 'Select Package',
       date: 'Date',
       numberOfPerson: 'Number of Person',
+      advancedAmount: 'Advanced Amount',
+      paymentScreenshot: 'Payment Screenshot',
     },
     packageOptions: [
       { value: '', label: 'Select Package' },

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   Drawer,
@@ -20,6 +19,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { navigationItems } from '@/data/navigation';
 
@@ -54,9 +54,15 @@ const Header: React.FC = () => {
           p: 2,
         }}
       >
-        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-          DigiskyUp
-        </Typography>
+        <Box sx={{ position: 'relative', width: 120, height: 50 }}>
+          <Image
+            src="/logo-preview.png"
+            alt="Maa Laxmi Homestay"
+            fill
+            style={{ objectFit: 'contain' }}
+            priority
+          />
+        </Box>
         <IconButton
           color="inherit"
           aria-label="close drawer"
@@ -95,20 +101,27 @@ const Header: React.FC = () => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Logo */}
-            <Typography
-              variant="h6"
+            <Box
               component={Link}
               href="/"
               sx={{
-                flexGrow: isMobile ? 1 : 0,
-                fontWeight: 'bold',
-                textDecoration: 'none',
-                color: 'white',
+                flexGrow: isMobile ? 1 : 1,
                 mr: 4,
+                position: 'relative',
+                // width: { xs: 100, md: 180 },
+                height: { xs: 90, md: 90 },
+                display: 'flex',
+                alignItems: 'center',
               }}
             >
-              DigiskyUp
-            </Typography>
+              <Image
+                src="/logo-preview.png"
+                alt="Maa Laxmi Homestay"
+                fill
+                style={{ objectFit: 'contain' }}
+                priority
+              />
+            </Box>
 
             {/* Desktop Navigation */}
             {!isMobile && (

@@ -61,12 +61,6 @@ export const socialMediaLinks: SocialMedia[] = [
     name: 'LinkedIn',
     url: 'https://linkedin.com',
     icon: 'LinkedIn',
-  },
-  {
-    id: 'digiskyup',
-    name: 'DigiskyUp',
-    url: 'https://digiskyup.com/',
-    icon: 'web',
   }
 ];
 
