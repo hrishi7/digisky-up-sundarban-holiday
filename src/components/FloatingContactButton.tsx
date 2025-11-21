@@ -3,18 +3,14 @@
 import React, { useState } from 'react';
 import {
   Fab,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  ListItemText,
   Snackbar,
   Alert,
   useMediaQuery,
   useTheme,
+  Tooltip,
 } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
 interface FloatingContactButtonProps {
   phoneNumber: string;
@@ -25,24 +21,12 @@ const FloatingContactButton: React.FC<FloatingContactButtonProps> = ({
   phoneNumber,
   whatsappMessage = 'Hello! I would like to inquire about your Sundarban tour packages.',
 }) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const handleCall = () => {
-    handleClose();
-    
     if (isMobile) {
       // On mobile, open phone dialer
       window.location.href = `tel:${phoneNumber}`;
@@ -62,8 +46,6 @@ const FloatingContactButton: React.FC<FloatingContactButtonProps> = ({
   };
 
   const handleWhatsApp = () => {
-    handleClose();
-    
     // Format phone number for WhatsApp (remove + and spaces)
     const formattedNumber = phoneNumber.replace(/[^0-9]/g, '');
     const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -79,85 +61,73 @@ const FloatingContactButton: React.FC<FloatingContactButtonProps> = ({
 
   return (
     <>
-      {/* Floating Action Button */}
-      <Fab
-        color="success"
-        aria-label="contact"
-        onClick={handleClick}
-        sx={{
-          position: 'fixed',
-          bottom: { xs: 24, md: 32 },
-          left: { xs: 16, md: 32 },
-          zIndex: 1000,
-          backgroundColor: '#25D366',
-          width: { xs: 56, md: 64 },
-          height: { xs: 56, md: 64 },
-          '&:hover': {
-            backgroundColor: '#128C7E',
-            transform: 'scale(1.1)',
-          },
-          transition: 'all 0.3s ease',
-          boxShadow: '0 4px 20px rgba(37, 211, 102, 0.4)',
-        }}
+      {/* Call Button - Left Bottom */}
+      <Tooltip 
+        title={isMobile ? "Call us" : "Click to copy phone number"} 
+        placement="right"
+        arrow
       >
-        <ContactPhoneIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
-      </Fab>
+        <Fab
+          color="primary"
+          aria-label="call"
+          onClick={handleCall}
+          sx={{
+            position: 'fixed',
+            bottom: { xs: 24, md: 32 },
+            left: { xs: 16, md: 32 },
+            zIndex: 1000,
+            backgroundColor: '#0A5F4E',
+            width: { xs: 56, md: 64 },
+            height: { xs: 56, md: 64 },
+            '&:hover': {
+              backgroundColor: '#084538',
+              transform: 'scale(1.1)',
+            },
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 20px rgba(10, 95, 78, 0.4)',
+          }}
+        >
+          <PhoneIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
+        </Fab>
+      </Tooltip>
 
-      {/* Context Menu */}
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        PaperProps={{
-          sx: {
-            borderRadius: 2,
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
-            minWidth: 180,
-          },
-        }}
+      {/* WhatsApp Button - Right Bottom */}
+      <Tooltip 
+        title="Chat on WhatsApp" 
+        placement="left"
+        arrow
       >
-        <MenuItem onClick={handleCall}>
-          <ListItemIcon>
-            <PhoneIcon sx={{ color: '#0A5F4E' }} />
-          </ListItemIcon>
-          <ListItemText 
-            primary="Call" 
-            secondary={isMobile ? phoneNumber : 'Copy number'}
-            secondaryTypographyProps={{
-              sx: { fontSize: '0.75rem' }
-            }}
-          />
-        </MenuItem>
-        
-        <MenuItem onClick={handleWhatsApp}>
-          <ListItemIcon>
-            <WhatsAppIcon sx={{ color: '#25D366' }} />
-          </ListItemIcon>
-          <ListItemText 
-            primary="WhatsApp"
-            secondary="Send message"
-            secondaryTypographyProps={{
-              sx: { fontSize: '0.75rem' }
-            }}
-          />
-        </MenuItem>
-      </Menu>
+        <Fab
+          color="success"
+          aria-label="whatsapp"
+          onClick={handleWhatsApp}
+          sx={{
+            position: 'fixed',
+            bottom: { xs: 24, md: 32 },
+            right: { xs: 16, md: 32 },
+            zIndex: 1000,
+            backgroundColor: '#25D366',
+            width: { xs: 56, md: 64 },
+            height: { xs: 56, md: 64 },
+            '&:hover': {
+              backgroundColor: '#128C7E',
+              transform: 'scale(1.1)',
+            },
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 20px rgba(37, 211, 102, 0.4)',
+          }}
+        >
+          <WhatsAppIcon sx={{ fontSize: { xs: 28, md: 32 } }} />
+        </Fab>
+      </Tooltip>
 
       {/* Snackbar for copy notification */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        sx={{ mb: 8 }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        sx={{ mb: 10 }}
       >
         <Alert 
           onClose={handleSnackbarClose} 
