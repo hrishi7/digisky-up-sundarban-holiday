@@ -70,6 +70,6 @@ export const footerInfo = {
   tagline: 'Your Travel Partner',
   copyright: `© ${new Date().getFullYear()} Created by<a href="https://digiskyup.com/">DigiskyUp</a>. All rights reserved.`,
   address: 'Jharkhali , Sardar More, Sundarban , Jharkhali park road , 743312 , Basanti, India, 743312',
-  email: 'info@digiskyup.com',
+  email: 'mohandas7176@gmail.com ',
   phone: '9564546823 / 9064483605 ',
 };

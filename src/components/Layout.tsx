@@ -4,6 +4,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import Header from './Header';
 import Footer from './Footer';
+import FloatingContactButton from './FloatingContactButton';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -30,6 +31,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </Box>
       <Footer />
+      <FloatingContactButton
+        phoneNumber="+919564546823"
+        whatsappMessage="Hello! I would like to inquire about your Sundarban tour packages."
+      />
     </Box>
   );
 };

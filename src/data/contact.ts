@@ -72,7 +72,7 @@ export const contactPageContent: ContactPageContent = {
         id: 'email',
         type: 'email',
         label: 'Email Us',
-        value: 'info@digiskyup.com',
+        value: 'mohandas7176@gmail.com ',
       },
     ],
   },

@@ -2,7 +2,7 @@
 
 import { Box, Container, Typography, TextField, Button, MenuItem, CircularProgress } from '@mui/material';
 import { Phone, Mail, Users, Calendar, Home, Package, DollarSign, Upload, X, CheckCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import Alert from '@mui/material/Alert';
 import { contactPageContent } from '@/data/contact';
 import { tourPackagesPageContent } from '@/data/tourPackages';
@@ -31,6 +31,27 @@ export default function ContactPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState('');
+
+  // Calculate total amount and advance payment
+  const calculatedAmounts = useMemo(() => {
+    const numberOfPersons = parseInt(formData.numberOfPerson) || 0;
+    const selectedPackageTitle = formData.package;
+    
+    // Find the selected package from tour packages
+    const selectedPackage = tourPackagesPageContent.packages.find(
+      pkg => pkg.title === selectedPackageTitle
+    );
+    
+    if (!selectedPackage || !selectedPackage.details || numberOfPersons === 0) {
+      return { totalAmount: 0, advanceAmount: 0 };
+    }
+    
+    const pricePerHead = parseInt(selectedPackage.details.pricePerHead) || 0;
+    const totalAmount = numberOfPersons * pricePerHead;
+    const advanceAmount = Math.round(totalAmount * 0.5);
+    
+    return { totalAmount, advanceAmount };
+  }, [formData.numberOfPerson, formData.package]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -618,6 +639,8 @@ export default function ContactPage() {
                         placeholder={contactPageContent.form.fields.numberOfPerson}
                         value={formData.numberOfPerson}
                         onChange={handleChange}
+                        type='number'
+                        inputProps={{ min: 1 }}
                         sx={{
                           backgroundColor: 'white',
                           borderRadius: '8px',
@@ -684,7 +707,30 @@ export default function ContactPage() {
                           {errors.advancedAmount}
                         </Typography>
                       )}
+                      {calculatedAmounts.totalAmount > 0 && (
+                        <Box sx={{ ml: 7, mt: 1 }}>
+                          <Typography sx={{ 
+                            color: '#4CAF50', 
+                            fontSize: '0.875rem',
+                            fontWeight: 500,
+                            lineHeight: 1.5
+                          }}>
+                            Total Amount: ₹{calculatedAmounts.totalAmount.toLocaleString('en-IN')}
+                          </Typography>
+                          <Typography sx={{ 
+                            color: '#666', 
+                            fontSize: '0.75rem',
+                            mt: 0.5,
+                            fontStyle: 'italic'
+                          }}>
+                            Please pay 50% of the total amount as advance. In this case, 50% of ₹{calculatedAmounts.totalAmount.toLocaleString('en-IN')} = ₹{calculatedAmounts.advanceAmount.toLocaleString('en-IN')}
+                          </Typography>
+                        </Box>
+                      )}
                     </Box>
+                    {/* <Typography variant="body2" color="primary" sx={{ mt: 2 }}>
+                      Please pay 50% which is {{formData.numberOfPerson}} of the amount.
+                    </Typography> */}
 
                     {/* i want to show image of QrCode here in 240px * 240px size */}
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1.5 }}>

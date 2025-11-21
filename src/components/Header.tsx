@@ -18,6 +18,9 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -97,6 +100,79 @@ const Header: React.FC = () => {
 
   return (
     <>
+      {/* Top Contact Strip */}
+      <Box
+        sx={{
+          backgroundColor: '#1B4D3E',
+          color: 'white',
+          py: 1,
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        }}
+      >
+        <Container maxWidth="xl">
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: { xs: 'center', md: 'flex-start' },
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: { xs: 2, md: 4 },
+              fontSize: { xs: '0.75rem', md: '0.875rem' },
+            }}
+          >
+            {/* Location */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
+              }}
+            >
+              <LocationOnIcon sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} />
+              <span>Jharkhali, Sundarban</span>
+            </Box>
+
+            {/* Email */}
+            <Box
+              component="a"
+              href="mailto:mohandas7176@gmail.com "
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
+                color: 'white',
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              }}
+            >
+              <EmailIcon sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} />
+              <span>mohandas7176@gmail.com </span>
+            </Box>
+
+            {/* Phone */}
+            <Box
+              component="a"
+              href="tel:+919564546823"
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5,
+                color: 'white',
+                textDecoration: 'none',
+                '&:hover': {
+                  textDecoration: 'underline',
+                },
+              }}
+            >
+              <PhoneIcon sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }} />
+              <span>+91 9564546823</span>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
       <AppBar position="sticky" sx={{ backgroundColor: 'primary.main' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
